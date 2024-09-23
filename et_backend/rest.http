@@ -1,0 +1,24 @@
+### testing api call
+
+
+#### user
+
+
+### Get user
+GET http://localhost:8000/
+
+### Post user
+POST http://localhost:8000/api/v1/users
+Content-Type: application/json
+
+{
+    "name":"Shankar",
+    "email":"fafa4@gmail.com",
+    "password":"123"
+    
+}
+
+
+
+
+### Transactions
