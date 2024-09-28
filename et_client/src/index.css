@@ -1,0 +1,40 @@
+.wrapper {
+  min-height: 100vh;
+  background: black;
+  color: rgb(249, 230, 230);
+}
+
+.animate {
+  animation-duration: 4s;
+  animation-name: fadeRight;
+  animation-direction: right;
+  background-color: rgb(58, 76, 76);
+  color: rgb(104, 102, 98);
+  transition: ease-in;
+}
+@keyframes fadeRight {
+  from {
+    margin-top: 0%;
+    color: rgb(104, 102, 98);
+    background-color: aqua;
+  }
+  to {
+    margin-top: 20%;
+    color: black;
+    background-color: aquamarine;
+  }
+}
+.logo {
+  font-weight: 600;
+  text-transform: uppercase;
+  color: whitesmoke;
+}
+
+.main {
+  min-height: calc(100vh - 500px);
+}
+/* .animated-text {
+  font-size: 1.46875rem;
+  font-weight: 500;
+  color: white;
+} */

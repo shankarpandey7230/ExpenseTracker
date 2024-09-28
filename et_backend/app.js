@@ -1,7 +1,7 @@
 import express from 'express';
 import userRouter from './routers/userRouter.js';
 import { connectDB } from './config/mongodbConfig.js';
-
+import cors from 'cors';
 const server = express();
 
 const PORT = process.env.PORt || 8000;
@@ -11,6 +11,7 @@ connectDB();
 
 // MiddleWares for json data
 server.use(express.json());
+server.use(cors());
 
 // API endpoints
 
