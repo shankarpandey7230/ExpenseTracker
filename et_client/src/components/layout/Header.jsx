@@ -9,7 +9,7 @@ import '../../index.css';
 
 const Header = () => {
   return (
-    <Navbar expand="lg" variant="dark" className="bg-dark">
+    <Navbar expand="lg" variant="dark" className="bg-dark mb-5">
       <Container>
         <Navbar.Brand href="#home">
           <span className="logo">Expense Tracker</span>

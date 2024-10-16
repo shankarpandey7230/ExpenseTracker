@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import CustomForm from './CustomForm';
@@ -6,23 +7,13 @@ import { PostNewUser } from '../../helpers/axiosHelper';
 import useForm from '../hooks/useForm';
 
 const initialState = {
-  name: '',
   email: '',
   password: '',
-  ConfirmPassword: '',
 };
-const SignUpForm = () => {
+const SignInForm = () => {
   const { form, setForm, handleOnChange } = useForm(initialState);
 
   const fields = [
-    {
-      label: 'Name',
-      placeholder: 'Shankar',
-      required: true,
-      type: 'text',
-      name: 'name',
-      value: form.name,
-    },
     {
       label: 'Email',
       placeholder: 'Shankar@gmail.com',
@@ -37,32 +28,19 @@ const SignUpForm = () => {
       required: true,
       type: 'password',
       name: 'password',
-      value: form.password,
-    },
-    {
-      label: 'Confirm Password',
-      placeholder: '****',
-      required: true,
-      type: 'password',
-      name: 'ConfirmPassword',
-      value: form.ConfirmPassword,
     },
   ];
+
   const handleOnSubmit = async (e) => {
     e.preventDefault();
     const { ConfirmPassword, ...rest } = form;
-    if (ConfirmPassword !== rest.password) {
-      return toast.error('Password do not match!');
-    }
-    // console.log(form);
-    const { status, message } = await PostNewUser(rest);
-    toast[status](message);
-    status === 'success' && setForm(initialState);
+
+    console.log(form);
   };
 
   return (
     <div className="border rounded p-4 shadow-lg ">
-      <h4 className="text-center">Sign Up now!!!</h4>
+      <h4 className="text-center">Sign In now!!!</h4>
       <Form onSubmit={handleOnSubmit}>
         {fields.map((input) => (
           <CustomForm key={input.name} {...input} onChange={handleOnChange} />
@@ -78,4 +56,4 @@ const SignUpForm = () => {
   );
 };
 
-export default SignUpForm;
+export default SignInForm;

@@ -4,6 +4,7 @@ import { insertUser } from '../models/user/UserModal.js';
 import hashPassword from '../utils/bcrypt.js';
 
 const router = express.Router();
+router.use(express.json());
 
 // user sign up
 router.post('/', async (req, res, next) => {
@@ -36,6 +37,29 @@ router.post('/', async (req, res, next) => {
 });
 
 // user login
+
+router.post('/login', (req, res, next) => {
+  console.log('request', req.body);
+  // res.send('success');
+  try {
+    // receive email and password
+    const { email, password } = req.body;
+    console.log('Email:', email);
+    // console.log(email, password);
+
+    // find the user by email and password verification
+    // successful JWT and store in database and return user {} with jwt token
+    res.json({
+      status: 'success',
+      message: 'Logged in',
+      user: 'shankar',
+    });
+  } catch (error) {
+    res.status(500).json({
+      error: error.message,
+    });
+  }
+});
 
 // user profile
 

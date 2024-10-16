@@ -8,7 +8,7 @@ import '../index.css';
 
 const Signup = () => {
   return (
-    <Container className="p-5 ">
+    <Container className="p-5">
       <Row className="bg-dark p-5 rounded g-5 ">
         <Col md={6}>
           <FinancialAdvice />

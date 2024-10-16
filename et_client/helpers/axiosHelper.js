@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const rootApiEndPoint = 'http://localhost:8000/api/v1';
+const rootApiEndPoint = 'http://localhost:8000/api/v1/';
 const apiProcess = async ({ method, url, data }) => {
   try {
     const response = await axios({
