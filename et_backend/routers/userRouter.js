@@ -90,9 +90,11 @@ router.get('/', auth, (req, res, next) => {
     // token correct validate
     // get user email from token
     // get user by email
+    const user = req.userInfo;
     res.json({
       status: 'success',
       message: 'Your profile is matched',
+      user,
     });
   } catch (error) {
     res.status(500).json({

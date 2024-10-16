@@ -6,7 +6,7 @@
 
 ### Get user
 GET http://localhost:8000/api/v1/users
-Authorization: eyJlbWFpbCI6InNoYW5rckBnbWFpbC5jb20iLCJpYXQiOjE3Mjg5NTA1NzksImV4cCI6MTcyOTAzNjk3OX0.YbDS5vpjuZuT276h_LWN5dzCjJMweUjNvprq4suB3PI
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYW5rckBnbWFpbC5jb20iLCJpYXQiOjE3MjkwNDQzMDUsImV4cCI6MTcyOTA0NDM2NX0.Ie48irMFQNoCgLFMP7WCO2IbT-GOrn8C4AFHHtFq7BY
 
 
 ### Post user
