@@ -1,13 +1,18 @@
-import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
+import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
 import { ImExit } from 'react-icons/im';
 import { HiOutlineLogin } from 'react-icons/hi';
 import { IoCreate } from 'react-icons/io5';
+import { MdDashboard } from 'react-icons/md';
+import { TbTransactionDollar } from 'react-icons/tb';
 import '../../index.css';
+import { useUser } from '../../context/UserContext';
 
 const Header = () => {
+  // const data = useUser();
+  // console.log(data);
   return (
     <Navbar expand="lg" variant="dark" className="bg-dark mb-5">
       <Container>
@@ -24,6 +29,14 @@ const Header = () => {
             <Link className="nav-link" to="/">
               <HiOutlineLogin />
               Sign In
+            </Link>
+            <Link className="nav-link" to="/dashboard">
+              <MdDashboard />
+              Dashboard
+            </Link>
+            <Link className="nav-link" to="/transaction">
+              <TbTransactionDollar />
+              Transaction
             </Link>
             <Link className="nav-link">
               <ImExit />

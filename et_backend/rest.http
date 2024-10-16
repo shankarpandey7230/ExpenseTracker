@@ -1,11 +1,13 @@
 ### testing api call
 
 
-#### user
+#### users
 
 
 ### Get user
-GET http://localhost:8000/
+GET http://localhost:8000/api/v1/users
+Authorization: eyJlbWFpbCI6InNoYW5rckBnbWFpbC5jb20iLCJpYXQiOjE3Mjg5NTA1NzksImV4cCI6MTcyOTAzNjk3OX0.YbDS5vpjuZuT276h_LWN5dzCjJMweUjNvprq4suB3PI
+
 
 ### Post user
 POST http://localhost:8000/api/v1/users
@@ -20,7 +22,6 @@ Content-Type: application/json
 ### Login User
 
 POST http://localhost:8000/api/v1/users/login
-
 Content-Type: application/json
 
 {

@@ -7,3 +7,8 @@ import UserSchema from './UserSchema.js';
 export const insertUser = (userObj) => {
   return UserSchema(userObj).save();
 };
+
+//  R - Read
+export const getUserByEmail = (email) => {
+  return UserSchema.findOne({ email });
+};

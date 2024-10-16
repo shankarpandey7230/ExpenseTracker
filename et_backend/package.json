@@ -8,10 +8,11 @@
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "express": "^4.21.0",
+    "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.6.3"
   },
   "scripts": {
-    "dev": "nodemon app.js",
+    "dev": "nodemon --env-file=.env app.js",
     "start": "node app.js"
   }
 }

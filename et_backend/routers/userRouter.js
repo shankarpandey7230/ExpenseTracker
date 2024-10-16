@@ -1,7 +1,9 @@
 import express from 'express';
-import { insertUser } from '../models/user/UserModal.js';
+import { insertUser, getUserByEmail } from '../models/user/UserModal.js';
 
-import hashPassword from '../utils/bcrypt.js';
+import { hashPassword, comparePassword } from '../utils/bcrypt.js';
+import { signJwt } from '../utils/jwt.js';
+import { auth } from '../middlewares/authMiddleware.js';
 
 const router = express.Router();
 router.use(express.json());
@@ -38,21 +40,40 @@ router.post('/', async (req, res, next) => {
 
 // user login
 
-router.post('/login', (req, res, next) => {
-  console.log('request', req.body);
+router.post('/login', async (req, res, next) => {
+  // console.log('request', req.body);
   // res.send('success');
   try {
     // receive email and password
     const { email, password } = req.body;
-    console.log('Email:', email);
-    // console.log(email, password);
+    // console.log('Email:', email);
+    if (email && password) {
+      // console.log(email, password);
 
-    // find the user by email and password verification
-    // successful JWT and store in database and return user {} with jwt token
-    res.json({
-      status: 'success',
-      message: 'Logged in',
-      user: 'shankar',
+      // find the user by email and password verification
+      const user = await getUserByEmail(email);
+      if (user?._id) {
+        const matchedPassword = comparePassword(password, user.password);
+        if (matchedPassword) {
+          // true user and authenticate
+
+          // successful JWT and store in database and return user {} with jwt token
+          const accessJWT = signJwt({
+            email: email,
+          });
+          user.password = undefined;
+          res.json({
+            status: 'success',
+            message: 'Logged in',
+            user,
+            accessJWT,
+          });
+          return;
+        }
+      }
+    }
+    res.status(401).json({
+      error: 'Invalid credentials ',
     });
   } catch (error) {
     res.status(500).json({
@@ -61,6 +82,23 @@ router.post('/login', (req, res, next) => {
   }
 });
 
-// user profile
+// user profile from accessJWT
+router.get('/', auth, (req, res, next) => {
+  try {
+    // 1.will get token
+    // 2. create auth middleware
+    // token correct validate
+    // get user email from token
+    // get user by email
+    res.json({
+      status: 'success',
+      message: 'Your profile is matched',
+    });
+  } catch (error) {
+    res.status(500).json({
+      error: error.message,
+    });
+  }
+});
 
 export default router;
