@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import { ToastContainer, toast } from 'react-toastify';
 import { Routes, Route } from 'react-router-dom';
@@ -10,8 +10,22 @@ import DefaultLayout from './components/layout/DefaultLayout';
 import Dashboard from './pages/Dashboard';
 import Transaction from './pages/Transaction';
 import { Auth } from './auth/Auth';
+import { autoLogin } from './utils/users';
+import { useUser } from './context/UserContext';
 
 function App() {
+  const { user, setUser } = useUser();
+  useEffect(() => {
+    //   // autoLogin()
+    !user?._id && updateUser();
+  }, [user?._id]);
+
+  const updateUser = async () => {
+    const user = await autoLogin();
+    // console.log(user);
+    setUser(user);
+  };
+
   return (
     <div className="wrapper">
       <Routes>

@@ -11,8 +11,14 @@ import '../../index.css';
 import { useUser } from '../../context/UserContext';
 
 const Header = () => {
-  // const data = useUser();
-  // console.log(data);
+  const { user, setUser } = useUser();
+
+  const handleLogOut = () => {
+    alert('Logging out');
+    // delete access token from localStorae
+    localStorage.removeItem('accessJWT');
+    setUser({});
+  };
   return (
     <Navbar expand="lg" variant="dark" className="bg-dark mb-5">
       <Container>
@@ -22,26 +28,34 @@ const Header = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
-            <Link className="nav-link" to="/signup">
-              <IoCreate />
-              Sign Up
-            </Link>
-            <Link className="nav-link" to="/">
-              <HiOutlineLogin />
-              Sign In
-            </Link>
-            <Link className="nav-link" to="/dashboard">
-              <MdDashboard />
-              Dashboard
-            </Link>
-            <Link className="nav-link" to="/transaction">
-              <TbTransactionDollar />
-              Transaction
-            </Link>
-            <Link className="nav-link">
-              <ImExit />
-              Log Out
-            </Link>
+            {user?._id ? (
+              <>
+                {' '}
+                <Link className="nav-link" to="/dashboard">
+                  <MdDashboard />
+                  Dashboard
+                </Link>
+                <Link className="nav-link" to="/transaction">
+                  <TbTransactionDollar />
+                  Transaction
+                </Link>
+                <Link className="nav-link" to="/" onClick={handleLogOut}>
+                  <ImExit />
+                  Log Out
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link className="nav-link" to="/signup">
+                  <IoCreate />
+                  Sign Up
+                </Link>
+                <Link className="nav-link" to="/">
+                  <HiOutlineLogin />
+                  Sign In
+                </Link>
+              </>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>

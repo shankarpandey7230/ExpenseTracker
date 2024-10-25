@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import CustomForm from './CustomForm';
@@ -13,13 +13,17 @@ const initialState = {
   password: '',
 };
 const SignInForm = () => {
+  const location = useLocation();
+  console.log(location);
   const navigate = useNavigate();
   const { user, setUser } = useUser();
   const { form, setForm, handleOnChange } = useForm(initialState);
 
+  const moveTo = location?.state?.from?.pathname || '/dashboard';
+
   useEffect(() => {
-    user?._id && navigate('/dashboard');
-  }, [user?._id, navigate]);
+    user?._id && navigate(moveTo);
+  }, [user?._id, navigate, moveTo]);
 
   const fields = [
     {
@@ -52,7 +56,7 @@ const SignInForm = () => {
     const { status, message, user, accessJWT } = await pendingResp;
 
     toast[status](message);
-    console.log(user, accessJWT);
+    // console.log(user, accessJWT);
     setUser(user);
     localStorage.setItem('accessJWT', accessJWT);
     // localStorage.setItem('userInfo', JSON.stringify(user));

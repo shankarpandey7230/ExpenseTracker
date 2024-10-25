@@ -1,14 +1,19 @@
 import axios from 'axios';
 
 const rootApiEndPoint = 'http://localhost:8000/api/v1';
-const apiProcess = async ({ method, url, data }) => {
+
+const getAccessJWT = () => {
+  return localStorage.getItem('accessJWT');
+};
+const apiProcess = async ({ method, url, data, headers }) => {
   try {
     const response = await axios({
       method,
       url,
       data,
+      headers,
     });
-    console.log(response.data);
+    // console.log(response.data);
     return response.data;
   } catch (error) {
     return {
@@ -33,6 +38,17 @@ export const loginUser = (data) => {
     method: 'post',
     url: rootApiEndPoint + '/users/login',
     data,
+  };
+  return apiProcess(obj);
+};
+
+export const getUserProfile = () => {
+  const obj = {
+    method: 'get',
+    url: rootApiEndPoint + '/users',
+    headers: {
+      Authorization: getAccessJWT(),
+    },
   };
   return apiProcess(obj);
 };
