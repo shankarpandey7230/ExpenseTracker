@@ -60,6 +60,9 @@ export const PostNewTransaction = (data) => {
     method: 'post',
     url: rootApiEndPoint + '/transactions',
     data,
+    headers: {
+      Authorization: getAccessJWT(),
+    },
   };
   return apiProcess(obj);
 };

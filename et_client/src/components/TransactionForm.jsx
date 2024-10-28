@@ -26,6 +26,7 @@ const TransactionForm = () => {
     });
     const { status, message } = await pending;
     toast[status](message);
+    status === 'success' && setForm(initialState);
     // function call fetching transaction
   };
   const fields = [
@@ -49,8 +50,8 @@ const TransactionForm = () => {
       label: 'TransactionDate',
       required: true,
       type: 'date',
-      name: 'date',
-      value: form.date,
+      name: 'tdate',
+      value: form.tdate,
     },
   ];
   return (

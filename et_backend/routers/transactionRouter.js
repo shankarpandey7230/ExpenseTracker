@@ -1,5 +1,8 @@
 import express from 'express';
-import { insertTransaction } from '../models/transactions/TransactionModal.js';
+import {
+  insertTransaction,
+  getTransactions,
+} from '../models/transactions/TransactionModal.js';
 
 const router = express.Router();
 
@@ -22,7 +25,31 @@ router.post('/', async (req, res, next) => {
         });
   } catch (error) {
     console.log(error);
+    res.json({
+      status: 'error',
+      message: error.message,
+    });
   }
 });
 
+// transaction for logged in user
+
+router.get('/', async (req, res) => {
+  try {
+    // all transaction for individual user
+    const { _id } = req.userInfo;
+    const transactions = (await getTransactions(_id)) || [];
+    res.json({
+      status: 'success',
+      message: 'transactions ',
+      transactions,
+    });
+  } catch (error) {
+    console.log(error);
+    res.json({
+      status: 'error',
+      message: error.message,
+    });
+  }
+});
 export default router;
