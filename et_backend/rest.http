@@ -33,3 +33,16 @@ Content-Type: application/json
 
 
 ### Transactions
+
+### POST new transaction
+POST http://localhost:8000/api/v1/transactions
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYW5rckBnbWFpbC5jb20iLCJpYXQiOjE3MzAwNzE3OTYsImV4cCI6MTczMDE1ODE5Nn0.4xyU0KuSoYmlAt7tF66dYQBw4uDBdFLsNoz6cFm6_ns
+
+{
+    "type":"income",
+    "title":"Wages",
+    "amount":"55",
+    "tdate":"04-23-2023"
+
+}

@@ -52,3 +52,14 @@ export const getUserProfile = () => {
   };
   return apiProcess(obj);
 };
+
+// Transaction api calls
+
+export const PostNewTransaction = (data) => {
+  const obj = {
+    method: 'post',
+    url: rootApiEndPoint + '/transactions',
+    data,
+  };
+  return apiProcess(obj);
+};

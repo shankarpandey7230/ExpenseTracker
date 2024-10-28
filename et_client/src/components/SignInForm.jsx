@@ -14,7 +14,7 @@ const initialState = {
 };
 const SignInForm = () => {
   const location = useLocation();
-  console.log(location);
+  // console.log(location);
   const navigate = useNavigate();
   const { user, setUser } = useUser();
   const { form, setForm, handleOnChange } = useForm(initialState);

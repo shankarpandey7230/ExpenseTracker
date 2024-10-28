@@ -1,7 +1,9 @@
 import express from 'express';
 import userRouter from './routers/userRouter.js';
+import transactionRouter from './routers/transactionRouter.js';
 import { connectDB } from './config/mongodbConfig.js';
 import cors from 'cors';
+import { auth } from './middlewares/authMiddleware.js';
 const server = express();
 
 const PORT = process.env.PORt || 8000;
@@ -16,6 +18,7 @@ server.use(cors());
 // API endpoints
 
 server.use('/api/v1/users', userRouter);
+server.use('/api/v1/transactions', auth, transactionRouter);
 
 server.get('/', (req, res) => {
   res.json({
