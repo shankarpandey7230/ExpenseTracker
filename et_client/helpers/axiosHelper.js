@@ -66,3 +66,28 @@ export const PostNewTransaction = (data) => {
   };
   return apiProcess(obj);
 };
+
+// fetch transactions for logged in user
+export const fetchTransactions = () => {
+  const obj = {
+    method: 'get',
+    url: rootApiEndPoint + '/transactions',
+
+    headers: {
+      Authorization: getAccessJWT(),
+    },
+  };
+  return apiProcess(obj);
+};
+
+export const deleteTransactions = (data) => {
+  const obj = {
+    method: 'delete',
+    url: rootApiEndPoint + '/transactions',
+    data,
+    headers: {
+      Authorization: getAccessJWT(),
+    },
+  };
+  return apiProcess(obj);
+};

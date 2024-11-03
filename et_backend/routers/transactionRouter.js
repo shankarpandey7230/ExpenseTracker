@@ -2,6 +2,7 @@ import express from 'express';
 import {
   insertTransaction,
   getTransactions,
+  deleteTransactions,
 } from '../models/transactions/TransactionModal.js';
 
 const router = express.Router();
@@ -43,6 +44,28 @@ router.get('/', async (req, res) => {
       status: 'success',
       message: 'transactions ',
       transactions,
+    });
+  } catch (error) {
+    console.log(error);
+    res.json({
+      status: 'error',
+      message: error.message,
+    });
+  }
+});
+// delete transactions
+router.delete('/', async (req, res) => {
+  try {
+    // receive id of all transaction/ one trans and users Id
+    const ids = req.body;
+    const { _id } = req.userInfo;
+    console.log(ids, _id);
+    // deletionç
+    const result = await deleteTransactions(_id, ids);
+    // console.log(result);
+    res.json({
+      status: 'success',
+      message: result.deletedCount + ' transactions deleted Successfully',
     });
   } catch (error) {
     console.log(error);

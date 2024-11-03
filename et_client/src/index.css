@@ -41,3 +41,18 @@
 .mar {
   margin-top: 12rem;
 }
+
+.table,
+tr td,
+th {
+  background: transparent !important;
+  color: antiquewhite !important;
+}
+
+.debit {
+  color: red !important;
+}
+
+.credit {
+  color: greenyellow !important;
+}
