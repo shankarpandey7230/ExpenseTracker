@@ -3,8 +3,10 @@ import Table from 'react-bootstrap/Table';
 import { useUser } from '../context/UserContext';
 import Button from 'react-bootstrap/Button';
 import { FaPlusCircle } from 'react-icons/fa';
+
 import Form from 'react-bootstrap/Form';
-import { deleteTransactions } from '../../../et_backend/models/transactions/TransactionModal.js';
+import { deleteTransactions } from '../../helpers/axioshelper';
+import { toast } from 'react-toastify';
 
 const TransactionTable = () => {
   const { transaction, getTransactions, toggleModal } = useUser();
@@ -50,8 +52,14 @@ const TransactionTable = () => {
   const handleOnDelete = async () => {
     if (confirm(`You want to delete ${idsToDelete.length} transactions`)) {
       // console.log(idsToDelete);
-      const result = await deleteTransactions(idsToDelete);
-      console.log(result);
+      const pending = deleteTransactions(idsToDelete);
+      // console.log(result);
+      toast.promise(pending, {
+        pending: 'Please wait',
+      });
+      const { status, message } = await pending;
+      toast[status](message);
+      status === 'success' && getTransactions() && setIdsToDelete([]);
     }
   };
 

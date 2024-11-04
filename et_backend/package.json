@@ -9,7 +9,7 @@
     "cors": "^2.8.5",
     "express": "^4.21.0",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.6.3"
+    "mongoose": "^8.8.0"
   },
   "scripts": {
     "dev": "nodemon --env-file=.env app.js",

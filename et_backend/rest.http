@@ -58,6 +58,6 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYW5rckBnbWFp
 
 DELETE http://localhost:8000/api/v1/transactions
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYW5rckBnbWFpbC5jb20iLCJpYXQiOjE3MzA1MTI5NzAsImV4cCI6MTczMDU5OTM3MH0.9nTOTk7mYO7gRTqlRPJk9z3f59qvIBx35Ufq7oazXqE
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYW5rckBnbWFpbC5jb20iLCJpYXQiOjE3MzA2MDM1NDMsImV4cCI6MTczMDY4OTk0M30.z19UC6VB-nuc5gMKGtQpK9DpnTblHKxjDZ3pe6r4S5Y
 
-["6720303bd69306cbb9f1cf95", "67203e83d69306cbb9f1cfb0"]
+["67241b8f1e422a2e8e97029d"]

@@ -18,5 +18,6 @@ export const getTransactions = (userId) => {
 // deleting transaction
 
 export const deleteTransactions = (userId, idsToDelete) => {
+  // const TransactionDelete = mongoose.model('Transaction', TransactionSchema);
   return TransactionSchema.deleteMany({ userId, _id: { $in: idsToDelete } });
 };
