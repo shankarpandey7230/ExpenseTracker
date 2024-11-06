@@ -9,9 +9,8 @@ const router = express.Router();
 
 router.post('/', async (req, res, next) => {
   try {
-    // console.log(req.body);
     const { _id } = req.userInfo;
-    // console.log(user);
+
     req.body.userId = _id;
     const result = await insertTransaction(req.body);
 
@@ -25,17 +24,13 @@ router.post('/', async (req, res, next) => {
           message: 'something went wrong could not add transaction',
         });
   } catch (error) {
-    console.log(error);
-    res.json({
-      status: 'error',
-      message: error.message,
-    });
+    next(error);
   }
 });
 
 // transaction for logged in user
 
-router.get('/', async (req, res) => {
+router.get('/', async (req, res, next) => {
   try {
     // all transaction for individual user
     const { _id } = req.userInfo;
@@ -46,33 +41,25 @@ router.get('/', async (req, res) => {
       transactions,
     });
   } catch (error) {
-    console.log(error);
-    res.json({
-      status: 'error',
-      message: error.message,
-    });
+    next(error);
   }
 });
 // delete transactions
-router.delete('/', async (req, res) => {
+router.delete('/', async (req, res, next) => {
   try {
     // receive id of all transaction/ one trans and users Id
     const ids = req.body;
     const { _id } = req.userInfo;
-    console.log(ids, _id);
+
     // deletionç
     const result = await deleteTransactions(_id, ids);
-    // console.log(result);
+
     res.json({
       status: 'success',
       message: result.deletedCount + ' transactions deleted Successfully',
     });
   } catch (error) {
-    console.log(error);
-    res.json({
-      status: 'error',
-      message: error.message,
-    });
+    next(error);
   }
 });
 export default router;

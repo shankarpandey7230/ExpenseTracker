@@ -68,7 +68,11 @@ const TransactionTable = () => {
       <div className="d-flex justify-content-between pt-3 mb-4">
         <div>{displayTrans.length} transactions found</div>
         <div>
-          <Form.Control type="text" onChange={handleSearch} />
+          <Form.Control
+            type="text"
+            placeholder="Your Transaction Title"
+            onChange={handleSearch}
+          />
         </div>
         <div>
           <Button onClick={() => toggleModal(true)}>
@@ -124,13 +128,7 @@ const TransactionTable = () => {
                 </tr>
               );
             })}
-          {/* <tr>
-          <td>1</td>
-          <td>2024-2-23</td>
-          <td>Expenses</td>
-          <td>$100</td>
-          <td></td>
-        </tr> */}
+
           <tr className="fw-bold text-end">
             <td colSpan={3}>Total Balance</td>
             <td colSpan={2} className={balance > 0 ? 'credit' : 'debit'}>

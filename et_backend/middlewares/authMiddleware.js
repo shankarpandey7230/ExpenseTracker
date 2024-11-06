@@ -4,9 +4,9 @@ import { getUserByEmail } from '../models/user/UserModal.js';
 export const auth = async (req, res, next) => {
   try {
     const { authorization } = req.headers;
-    // console.log(authorization);
+    // .log(authorization);
     const result = verifyJWT(authorization);
-    // console.log(result);
+    // .log(result);
     if (result?.email) {
       const user = await getUserByEmail(result.email);
       if (user?._id) {

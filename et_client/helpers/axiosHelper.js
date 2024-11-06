@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const rootApiEndPoint = 'http://localhost:8000/api/v1';
+const rootApiEndPoint = import.meta.env.VITE_ROOT_URL + '/api/v1';
 
 const getAccessJWT = () => {
   return localStorage.getItem('accessJWT');
@@ -13,7 +13,7 @@ const apiProcess = async ({ method, url, data, headers }) => {
       data,
       headers,
     });
-    // console.log(response.data);
+
     return response.data;
   } catch (error) {
     return {

@@ -6,6 +6,8 @@ import cors from 'cors';
 import { auth } from './middlewares/authMiddleware.js';
 const server = express();
 
+import { errorHandler } from './middlewares/errorHandlerMiddleware.js';
+
 const PORT = process.env.PORt || 8000;
 
 // connect DB
@@ -26,6 +28,15 @@ server.get('/', (req, res) => {
   });
 });
 
+// 404 page not found error
+server.use((req, res, next) => {
+  const error = new Error('Page not Found');
+  error.statusCode = 404;
+  next(error);
+});
+
+// Global error handler
+server.use(errorHandler);
 server.listen(PORT, (error) => {
   error
     ? console.log(error)

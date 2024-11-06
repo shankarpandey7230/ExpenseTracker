@@ -22,7 +22,7 @@ function App() {
 
   const updateUser = async () => {
     const user = await autoLogin();
-    // console.log(user);
+
     setUser(user);
   };
 

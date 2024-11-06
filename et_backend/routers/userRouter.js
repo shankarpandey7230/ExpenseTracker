@@ -11,10 +11,9 @@ router.use(express.json());
 // user sign up
 router.post('/', async (req, res, next) => {
   try {
-    // console.log(req.body);
     // get the object user and data verification as well encrypt the password and insert user
     req.body.password = hashPassword(req.body.password);
-    console.log(req.body.password);
+
     const user = await insertUser(req.body);
     user?._id
       ? res.json({
@@ -26,30 +25,23 @@ router.post('/', async (req, res, next) => {
           message: 'Error occurred.Could not create account, please try again',
         });
   } catch (error) {
-    let msg = error.message;
-
-    if (msg.includes('E11000 duplicate key error collection')) {
-      msg = 'An user with this email already exist. Try using another one ';
+    if (error.message.includes('E11000 duplicate key error collection')) {
+      error.message =
+        'An user with this email already exist. Try using another one ';
     }
-    res.json({
-      status: 'error',
-      message: msg,
-    });
+    error.statusCode = 200;
+    next(error);
   }
 });
 
 // user login
 
 router.post('/login', async (req, res, next) => {
-  // console.log('request', req.body);
-  // res.send('success');
   try {
     // receive email and password
     const { email, password } = req.body;
-    // console.log('Email:', email);
-    if (email && password) {
-      // console.log(email, password);
 
+    if (email && password) {
       // find the user by email and password verification
       const user = await getUserByEmail(email);
       if (user?._id) {
@@ -76,9 +68,7 @@ router.post('/login', async (req, res, next) => {
       error: 'Invalid credentials ',
     });
   } catch (error) {
-    res.status(500).json({
-      error: error.message,
-    });
+    next(error);
   }
 });
 
@@ -97,9 +87,7 @@ router.get('/', auth, (req, res, next) => {
       user,
     });
   } catch (error) {
-    res.status(500).json({
-      error: error.message,
-    });
+    next(error);
   }
 });
 
