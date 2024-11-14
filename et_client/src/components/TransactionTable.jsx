@@ -65,9 +65,9 @@ const TransactionTable = () => {
 
   return (
     <>
-      <div className="d-flex justify-content-between pt-3 mb-4">
+      <div className="d-flex justify-content-between pt-3 mb-4 ">
         <div>{displayTrans.length} transactions found</div>
-        <div>
+        <div className="m-3">
           <Form.Control
             type="text"
             placeholder="Your Transaction Title"
