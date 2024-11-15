@@ -4,7 +4,11 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import CustomForm from './CustomForm';
 import { toast } from 'react-toastify';
-import { PostNewUser, loginUser } from '../../helpers/axiosHelper';
+import {
+  PostNewUser,
+  loginUser,
+  fetchTransactions,
+} from '../../helpers/axiosHelper';
 import useForm from '../hooks/useForm';
 import { useUser } from '../context/UserContext';
 

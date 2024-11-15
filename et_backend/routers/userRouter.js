@@ -81,6 +81,7 @@ router.get('/', auth, (req, res, next) => {
     // get user email from token
     // get user by email
     const user = req.userInfo;
+
     res.json({
       status: 'success',
       message: 'Your profile is matched',
